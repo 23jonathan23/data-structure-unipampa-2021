@@ -1,0 +1,16 @@
+Estruturas de dados a serem usadas:
+
+- Classes/Objetos
+- Arrays
+
+Operações:
+
+Inserir: Usuário deve informar o nome, endereço e telefone, com essas informações o sistema 
+irá mapear elas para uma instância de uma classe(Objeto), gerar um identificador único, armazenar o Objeto dentro de um Array
+e retornar o identificador único.
+
+Consultar:  Usuário deve informar o identificador único, o sistema irá percorrer o Array de Pessoas e exibir o objeto correspondente.
+
+Excluir: Usuário deve informar o identificador único, o sistema irá percorrer o array em busca do objeto 
+correspondente e efetuar a exclusão do dado de dentro do Array.
+
