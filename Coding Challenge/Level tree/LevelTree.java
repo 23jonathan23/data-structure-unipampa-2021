@@ -5,7 +5,7 @@ class Node {
     Node left;
     Node right;
     int data;
-    
+
     Node(int data) {
         this.data = data;
         left = null;
@@ -14,33 +14,36 @@ class Node {
 }
 
 class Solution {
-	//iterative solution
-	public static void levelOrder(Node root) {
+    // iterative solution
+    public static void levelOrder(Node root) {
         List<Integer> levelValues = new ArrayList<>();
 
         Queue<Node> queue = new LinkedList<>();
-        
+
         queue.add(root);
-        
-        while(!queue.isEmpty()){
+
+        while (!queue.isEmpty()) {
             Node node = queue.poll();
 
             levelValues.add(node.data);
 
-            if(node.left != null) queue.add(node.left);
-            
-            if(node.right != null) queue.add(node.right);
+            if (node.left != null)
+                queue.add(node.left);
+
+            if (node.right != null)
+                queue.add(node.right);
         }
 
-        for(int value : levelValues) System.out.print(value + " ");
+        for (int value : levelValues)
+            System.out.print(value + " ");
     }
 
-	public static Node insert(Node root, int data) {
-        if(root == null) {
+    public static Node insert(Node root, int data) {
+        if (root == null) {
             return new Node(data);
         } else {
             Node cur;
-            if(data <= root.data) {
+            if (data <= root.data) {
                 cur = insert(root.left, data);
                 root.left = cur;
             } else {
@@ -55,11 +58,11 @@ class Solution {
         Scanner scan = new Scanner(System.in);
         int t = scan.nextInt();
         Node root = null;
-        while(t-- > 0) {
+        while (t-- > 0) {
             int data = scan.nextInt();
             root = insert(root, data);
         }
         scan.close();
         levelOrder(root);
-    }	
+    }
 }

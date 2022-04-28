@@ -22,12 +22,12 @@ class Result {
     public static List<Double> runningMedian(List<Integer> a) {
         var heap = new Heap();
         List<Double> medians = new ArrayList<>();
-        
-        for(var number : a) {
+
+        for (var number : a) {
             heap.add(number);
             medians.add(heap.findMedian());
         }
-        
+
         return medians;
     }
 
@@ -47,18 +47,17 @@ public class Solution {
                 throw new RuntimeException(ex);
             }
         })
-            .map(String::trim)
-            .map(Integer::parseInt)
-            .collect(toList());
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(toList());
 
         List<Double> result = Result.runningMedian(a);
 
         bufferedWriter.write(
-            result.stream()
-                .map(Object::toString)
-                .collect(joining("\n"))
-            + "\n"
-        );
+                result.stream()
+                        .map(Object::toString)
+                        .collect(joining("\n"))
+                        + "\n");
 
         bufferedReader.close();
         bufferedWriter.close();
@@ -68,29 +67,29 @@ public class Solution {
 class Heap {
     PriorityQueue<Integer> maxHeap;
     PriorityQueue<Integer> minHeap;
-    
+
     public Heap() {
         maxHeap = new PriorityQueue<>();
         minHeap = new PriorityQueue<>(1, Collections.reverseOrder());
     }
-    
+
     public void add(int i) {
-        if (maxHeap.size() > minHeap.size()) 
+        if (maxHeap.size() > minHeap.size())
             minHeap.add(i);
-        else 
+        else
             maxHeap.add(i);
 
-        //balance heap
+        // balance heap
         if (!minHeap.isEmpty() && (minHeap.peek() > maxHeap.peek())) {
             minHeap.add(maxHeap.poll());
             maxHeap.add(minHeap.poll());
         }
     }
-    
+
     public double findMedian() {
-        if (maxHeap.size() == minHeap.size()) //pair values
+        if (maxHeap.size() == minHeap.size()) // pair values
             return (maxHeap.peek() + minHeap.peek()) / 2.0;
-        else //odd values
+        else // odd values
             return maxHeap.peek();
     }
 }
